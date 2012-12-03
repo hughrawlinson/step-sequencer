@@ -42,36 +42,36 @@ void draw(){
     prevtick = m.tick();
     for(int i = 0;i<b.beat(m.tick()%8).length;i++){
       if(b.beat(m.tick()%8)[i] == 0){
-        audioPlayer1.cue(0);
-        audioPlayer1.play();
+        audioPlayer1.pause();
+        audioPlayer1.play(0);
       }
       else if(b.beat(m.tick()%8)[i] == 1){
-        audioPlayer2.cue(0);
-        audioPlayer2.play();
+        audioPlayer2.pause();
+        audioPlayer2.play(0);
       }
       else if(b.beat(m.tick()%8)[i] == 2){
-        audioPlayer3.cue(0);
-        audioPlayer3.play();
+        audioPlayer3.pause();
+        audioPlayer3.play(0);
       }
       else if(b.beat(m.tick()%8)[i] == 3){
-        audioPlayer4.cue(0);
-        audioPlayer4.play();
+        audioPlayer4.pause();
+        audioPlayer4.play(0);
       }
       else if(b.beat(m.tick()%8)[i] == 4){
-        audioPlayer5.cue(0);
-        audioPlayer5.play();
+        audioPlayer5.pause();
+        audioPlayer5.play(0);
       }
       else if(b.beat(m.tick()%8)[i] == 5){
-        audioPlayer6.cue(0);
-        audioPlayer6.play();
+        audioPlayer6.pause();
+        audioPlayer6.play(0);
       }
       else if(b.beat(m.tick()%8)[i] == 6){
-        audioPlayer7.cue(0);
-        audioPlayer7.play();
+        audioPlayer7.pause();
+        audioPlayer7.play(0);
       }
       else if(b.beat(m.tick()%8)[i] == 7){
-        audioPlayer8.cue(0);
-        audioPlayer8.play();
+        audioPlayer8.pause();
+        audioPlayer8.play(0);
       }
     }
     //s.output(b.beat(m.tick()%8));

@@ -2,7 +2,7 @@ class file {
   void readFromWebsite(int id) {
     String query = "http://www.codeoclock.net/stepsequencer/grab.php?data="+id;
     String[] response = loadStrings(query);
-    println(response[0]);
+    //println(response[0]);
     response[0] = response[0].substring(2, response[0].length() - 3);
     String[] something;
     StringBuffer something2;
@@ -16,9 +16,10 @@ class file {
       for(int j = 0; j < valuesarr.length; j++){
         column = append(column,parseInt(valuesarr[j]));
       }
-      println(column);
+      //println(column);
       data = (int[][])append(data, column);
     }
+    println(data);
   }
   void writeAndUpload(int[][] data) {
     JSONArray d = new JSONArray();

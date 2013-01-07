@@ -1,25 +1,20 @@
 class file {
-  void readFromWebsite(int id) {
+  void readFromWebsite(int id, matrix m) {
+    m.init();
     String query = "http://www.codeoclock.net/stepsequencer/grab.php?data="+id;
     String[] response = loadStrings(query);
     //println(response[0]);
     response[0] = response[0].substring(2, response[0].length() - 3);
-    String[] something;
-    StringBuffer something2;
     response[0] = response[0].replace("],[",",,");
+    String[][] responsestr= new String[0][0];
     String[] values = response[0].split(",,");
-    int[][] data = new int[1][1];
     for(int i = 0; i < values.length; i++){
       String[] valuesarr = values[i].split(",");
-      //println(valuesarr);
-      int[] column = new int[0];
       for(int j = 0; j < valuesarr.length; j++){
-        column = append(column,parseInt(valuesarr[j]));
+        m.setBeat(i,parseInt(valuesarr[j]));
       }
-      //println(column);
-      data = (int[][])append(data, column);
     }
-    println(data);
+    println(responsestr);
   }
   void writeAndUpload(int[][] data) {
     JSONArray d = new JSONArray();

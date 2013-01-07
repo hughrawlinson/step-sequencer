@@ -5,6 +5,7 @@ class matrix{
   int w;
   int trackHeight;
   int margin;
+  int beatNo;
   track[] trackset;
   beatIndicator beatTracker;
   
@@ -13,6 +14,7 @@ class matrix{
     xpos = xposarg;
     h = harg;
     w = warg;
+    beatNo = beatCount;
     margin = marginarg;
     trackset = new track[trackCount];
     for(int i = 0;i<trackCount;i++){
@@ -24,6 +26,15 @@ class matrix{
       trackset[i].setDrawVars(xpos,yposTrack,margin,w,trackHeight);
       yposTrack += trackHeight + margin;
     }
+  }
+  
+  int[][] matrixArray(){
+    int[][] m = new int[0][0];
+    for(int i = 0; i < beatNo;i++){
+      m = (int[][])append(m,this.beat(i));
+      println(this.beat(i));
+    }
+    return m;
   }
   
   void drawMatrix(){
@@ -45,5 +56,15 @@ class matrix{
       }
     }
     return retArr;
+  }
+  void setBeat(int track, int beat){
+    trackset[track].setPosVal(beat+1,true);
+  }
+  void init(){
+    for(int i = 0; i < beatNo; i++){
+      for(int j = 1; j <= trackset[i].buttonCount; j++){
+        trackset[i].setPosVal(j,false);
+      }
+    }
   }
 }

@@ -17,6 +17,7 @@ class track{
     return steps[pos - 1].getValue();
   }
   void setPosVal(int pos,boolean val){
+    println(pos);
     steps[pos - 1].setValue(val);
   }
   void setDrawVars(int posx, int posy,int marginArg,int trackWidthArg,int trackHeightArg){

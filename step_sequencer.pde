@@ -2,6 +2,9 @@ import ddf.minim.*;
 import ddf.minim.signals.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
+import org.json.*;
+import javax.swing.*;
+import java.io.*;
 
 Minim minim;
 AudioPlayer audioPlayer1;
@@ -13,15 +16,21 @@ AudioPlayer audioPlayer6;
 AudioPlayer audioPlayer7;
 AudioPlayer audioPlayer8;
 
+//Set tempo here; it cannot be changed later on.
+int tempo = 90;
+//Set ID of pattern to load on keypress of 'l'
+int loadID = 55;
+
+file f = new file();
 matrix b = new matrix(8,8,550,550,10,10,10);
-metro m = new metro(120,8);
+metro m = new metro(tempo,8);
 beatIndicator bi = new beatIndicator(8,20,580,30,530,40);
 //sound s = new sound();
 
 int prevtick = 0;
 
 void setup(){
-  frameRate(100);
+  //frameRate(100);
   minim = new Minim(this);
   size(570,640);
   smooth();
@@ -75,12 +84,30 @@ void draw(){
       }
     }
     //s.output(b.beat(m.tick()%8));
-    println(b.beat(m.tick()%8));
     bi.setBeat(m.tick()%8);
   }
 }
 void mouseClicked(){
   b.click(mouseX,mouseY);
+}
+void keyPressed(){
+  else if (key==(char)'i'){
+    b.init();
+  }
+  else if(key == (char)'l'){
+    /*
+    Again, having a problem with JOptionPane. It works in blank sketches, but not here or in file.pde
+    To load a specific patch, please set the 'arg' variable in the source code before launching,
+    then press 'l'.
+    */
+    //JFrame frame = new JFrame("InputDialog Example #2");
+    //int arg = int(JOptionPane.showInputDialog(frame,"Enter Beat ID:"));
+    int arg = loadID;
+    f.readFromWebsite(arg,b);
+  }
+  else if(key == (char)'s'){
+    f.writeAndUpload(b.matrixArray());
+  }
 }
 void stop(){
 

@@ -6,7 +6,7 @@ class metro{
   metro(int tempoarg,int divisions){
     tempo = tempoarg;
     beattime = ((60000/tempo)*4)/divisions;
-    count = divisions;
+    count = 0;
     prevtick = millis();
   }
   int beatID(){

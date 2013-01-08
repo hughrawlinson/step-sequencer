@@ -91,7 +91,7 @@ void mouseClicked(){
   b.click(mouseX,mouseY);
 }
 void keyPressed(){
-  else if (key==(char)'i'){
+  if (key==(char)'i'){
     b.init();
   }
   else if(key == (char)'l'){

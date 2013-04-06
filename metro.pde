@@ -1,6 +1,6 @@
 class metro{
   int tempo;
-  int prevTick;
+  long prevTick;
   int beattime;
   int count;
   metro(int tempoarg,int divisions){

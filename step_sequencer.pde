@@ -15,11 +15,13 @@ AudioPlayer audioPlayer5;
 AudioPlayer audioPlayer6;
 AudioPlayer audioPlayer7;
 AudioPlayer audioPlayer8;
+button startstoptoggle = new button();
+pushButton initialise = new pushButton();
 
 //Set tempo here; it cannot be changed later on.
 int tempo = 90;
 //Set ID of pattern to load on keypress of 'l'
-int loadID = 55;
+int loadID = 75;
 
 file f = new file();
 matrix b = new matrix(8,8,550,550,10,10,10);
@@ -32,8 +34,10 @@ int prevtick = 0;
 void setup(){
   //frameRate(100);
   minim = new Minim(this);
-  size(570,640);
+  size(618,640);
   smooth();
+  startstoptoggle.setDrawVars(578,10,20,20);
+  initialise.setDrawVars(578,40,20,20);
   audioPlayer1 = minim.loadFile("1.wav");
   audioPlayer2 = minim.loadFile("2.wav");
   audioPlayer3 = minim.loadFile("3.wav");
@@ -45,8 +49,10 @@ void setup(){
 }
 
 void draw(){
+  startstoptoggle.drawButton();
   b.drawMatrix();
   bi.drawBeatIndicator();
+  if(startstoptoggle.getValue()){
   if(m.tick() > prevtick){
     prevtick = m.tick();
     for(int i = 0;i<b.beat(m.tick()%8).length;i++){
@@ -83,12 +89,21 @@ void draw(){
         audioPlayer8.play(0);
       }
     }
+    }
     //s.output(b.beat(m.tick()%8));
     bi.setBeat(m.tick()%8);
   }
 }
 void mouseClicked(){
+  //startstoptoggle.setDrawVars(578,10,20,20);
   b.click(mouseX,mouseY);
+  if(mouseX>578 && mouseX<598 && mouseY>10 && mouseY<30){
+    startstoptoggle.toggleValue();
+  }
+  if(mouseX > initialise.xpos && mouseY > initialise.ypos && mouseX < initialise.xpos + initialise.buttonWidth && mouseY < initialise.ypos + initialise.buttonHeight){
+    startstoptoggle.toggleValue();
+    
+  }
 }
 void keyPressed(){
   if (key==(char)'i'){
@@ -100,9 +115,9 @@ void keyPressed(){
     To load a specific patch, please set the 'arg' variable in the source code before launching,
     then press 'l'.
     */
-    //JFrame frame = new JFrame("InputDialog Example #2");
-    //int arg = int(JOptionPane.showInputDialog(frame,"Enter Beat ID:"));
-    int arg = loadID;
+    JFrame frame = new JFrame("InputDialog Example #2");
+    int arg = int(JOptionPane.showInputDialog(frame,"Enter Beat ID:"));
+    //int arg = loadID;
     f.readFromWebsite(arg,b);
   }
   else if(key == (char)'s'){
